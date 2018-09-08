@@ -44,6 +44,7 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "wpackagist-plugin/all-in-one-seo-pack":"2.7.3",
     "wpackagist-plugin/staticpress":"0.4.5",
+    "wpackagist-plugin/jetpack-markdown":"3.9.6",
     "koodimonni-language/ja": "*"
   },
   "require-dev": {

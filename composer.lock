@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1e2650e1bf080a44169f4bdb3f69482",
+    "content-hash": "8e7099c32fd8ea8122201e81f363a2b2",
     "packages": [
         {
             "name": "composer/installers",
@@ -331,10 +331,10 @@
         },
         {
             "name": "koodimonni-plugin-language/woocommerce-ja",
-            "version": "3.4.4",
+            "version": "3.4.5",
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.4.4/ja.zip",
+                "url": "https://downloads.wordpress.org/translation/plugin/woocommerce/3.4.5/ja.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -729,6 +729,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/all-in-one-seo-pack/"
+        },
+        {
+            "name": "wpackagist-plugin/jetpack-markdown",
+            "version": "3.9.6",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/jetpack-markdown/",
+                "reference": "tags/3.9.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack-markdown.3.9.6.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/jetpack-markdown/"
         },
         {
             "name": "wpackagist-plugin/staticpress",

@@ -19,3 +19,7 @@ web/.htaccess
 vendor/*
 !vendor/.gitkeep
 /.idea/*
+
+# StaticPress
+/web/static/*
+!/web/static/.gitkeep

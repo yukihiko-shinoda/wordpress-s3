@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e7099c32fd8ea8122201e81f363a2b2",
+    "content-hash": "7c8d2782b1cac9ab15655ee162d4f3b5",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "049797d727261bf27f2690430d935067710049c2"
+                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/049797d727261bf27f2690430d935067710049c2",
-                "reference": "049797d727261bf27f2690430d935067710049c2",
+                "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+                "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
                 "shasum": ""
             },
             "require": {
@@ -124,7 +124,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2017-12-29T09:13:20+00:00"
+            "time": "2018-08-27T06:10:37+00:00"
         },
         {
             "name": "johnpbloch/wordpress",
@@ -712,15 +712,15 @@
         },
         {
             "name": "wpackagist-plugin/all-in-one-seo-pack",
-            "version": "2.7.3",
+            "version": "2.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/all-in-one-seo-pack/",
-                "reference": "tags/2.7.3"
+                "reference": "tags/2.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/all-in-one-seo-pack.2.7.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/all-in-one-seo-pack.2.8.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -751,6 +751,26 @@
             "homepage": "https://wordpress.org/plugins/jetpack-markdown/"
         },
         {
+            "name": "wpackagist-plugin/profile-widget-ninja",
+            "version": "4.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/profile-widget-ninja/",
+                "reference": "tags/4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/profile-widget-ninja.4.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/profile-widget-ninja/"
+        },
+        {
             "name": "wpackagist-plugin/staticpress",
             "version": "0.4.5",
             "source": {
@@ -774,16 +794,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v143",
+            "version": "v144",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "1cdd477661d3da7434efe5fedcb42d7b42503b8d"
+                "reference": "c12b3e29144e5732c863982fc08f03fbcf22ba06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/1cdd477661d3da7434efe5fedcb42d7b42503b8d",
-                "reference": "1cdd477661d3da7434efe5fedcb42d7b42503b8d",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/c12b3e29144e5732c863982fc08f03fbcf22ba06",
+                "reference": "c12b3e29144e5732c863982fc08f03fbcf22ba06",
                 "shasum": ""
             },
             "bin": [
@@ -814,7 +834,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2018-08-17T16:27:37+00:00"
+            "time": "2018-09-14T15:25:27+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

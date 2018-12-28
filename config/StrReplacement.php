@@ -3,19 +3,17 @@
  * Created by IntelliJ IDEA.
  * User: master
  * Date: 2018/08/20
- * Time: 14:33
+ * Time: 14:37
  */
 
-require_once WP_CONTENT_DIR . '/Replacement.php';
+require_once __DIR__ . '/Replacement.php';
 
-class PregReplacement extends Replacement
+class StrReplacement extends Replacement
 {
     private $replaces;
-    private $limit;
-    public function __construct($replaces, $content, $limit)
+    public function __construct($replaces, $content)
     {
         $this->replaces = $replaces;
-        $this->limit = $limit;
         parent::__construct($content);
     }
 
@@ -24,6 +22,6 @@ class PregReplacement extends Replacement
         $stringSearch = $this->renderArrayAsString(array_keys($this->replaces));
         $stringReplace = $this->renderArrayAsString(array_values($this->replaces));
 
-        return 'preg_replace('.$stringSearch.', '.$stringReplace.', '.$stringContents.', '.$this->limit.')';
+        return 'str_replace('.$stringSearch.', '.$stringReplace.', '.$stringContents.')';
     }
 }

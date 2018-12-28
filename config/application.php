@@ -81,3 +81,8 @@ define('DISALLOW_FILE_EDIT', true);
 if (!defined('ABSPATH')) {
     define('ABSPATH', $webroot_dir . '/wp/');
 }
+
+/**
+ * StaticPress S3 Replacement
+ */
+define('WP_STATIC_PRESS_S3_MAGIC_FILE_PATH', env('WP_STATIC_PRESS_S3_MAGIC_FILE_PATH') ?: '/usr/share/misc/magic');

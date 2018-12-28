@@ -7,44 +7,5 @@
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 require_once dirname(__DIR__) . '/config/application.php';
 //require_once ABSPATH . 'wp-settings.php';
-require_once WP_CONTENT_DIR.'/Replacement.php';
-require_once WP_CONTENT_DIR.'/StrReplacement.php';
-require_once WP_CONTENT_DIR.'/PregReplacement.php';
-
-define('WP_STATIC_PRESS_S3_MAGIC_FILE_PATH', env('WP_STATIC_PRESS_S3_MAGIC_FILE_PATH') ?: '/usr/share/misc/magic');
-$replacesClassS3HelperStr = [
-    '<?php'                 => '',
-    '/usr/share/misc/magic' => WP_STATIC_PRESS_S3_MAGIC_FILE_PATH,
-    '__FILE__'              => 'WP_CONTENT_DIR.\'/plugins/staticpress-s3/includes/class-S3_helper.php\'',
-];
-$replacesStaticPressS3PluginStr = [
-    '<?php'                                                                                                         => '',
-    '__FILE__'                                                                                                      => 'WP_CONTENT_DIR.\'/plugins/staticpress-s3/plugin.php\'',
-    'require(dirname(WP_CONTENT_DIR.\'/plugins/staticpress-s3/plugin.php\').\'/includes/class-S3_helper.php\');'       => new StrReplacement($replacesClassS3HelperStr, 'WP_CONTENT_DIR.\'/plugins/staticpress-s3/includes/class-S3_helper.php\''),
-];
-
-$replacesClassStaticPressStr = [
-    '<?php'                                                                                         => '',
-    'str_replace(trailingslashit(ABSPATH), trailingslashit($this->get_site_url()), $static_file)'   => 'str_replace(trailingslashit(dirname( ABSPATH)), trailingslashit($this->get_site_url()), $static_file)',
-    'untrailingslashit(ABSPATH)'                                                                    => 'untrailingslashit(dirname(ABSPATH))',
-    '__FILE__'                                                                                      => 'WP_CONTENT_DIR.\'/plugins/staticpress/includes/class-static_press.php\'',
-    '$this->scan_file(trailingslashit(ABSPATH).\'wp-admin/\''                                       => '//$this->scan_file(trailingslashit(ABSPATH).\'wp-admin/\'',
-    '$this->scan_file(trailingslashit(ABSPATH).\'wp-includes/\''                                    => '//$this->scan_file(trailingslashit(ABSPATH).\'wp-includes/\'',
-];
-$replacesStaticPressPluginStr = [
-    '<?php'                                                                                                         => '',
-    '__FILE__'                                                                                                      => 'WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\'',
-    'require(dirname(WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\').\'/includes/class-static_press.php\');'    => new StrReplacement($replacesClassStaticPressStr, 'WP_CONTENT_DIR.\'/plugins/staticpress/includes/class-static_press.php\''),
-    // ↓ @see http://webfood.info/staticpress-s3/#feedindexhtmlurl
-    '\'replace_relative_URI\'), 10, 2);'                                                                            => "'replace_relative_URI'), 10, 2);\nadd_action('StaticPress::file_put', 'replace_home_url', 2);\nfunction replace_home_url(\$file_dest, \$url){\n  \$buff = file_get_contents(\$file_dest);\n  \$replace = urlencode(static_press_admin::static_url());\n  \$content = str_replace(urlencode(home_url()),\$replace,\$buff);\nfile_put_contents(\$file_dest, \$content);\n}"
-];
-$replacesWpSettings = [
-    '<?php'		                                                           => '',
-    'include_once( $plugin );'                                             => "if (strcmp(\$plugin, WP_CONTENT_DIR.'/plugins/staticpress/plugin.php') === 0) {\n        include_once(WP_CONTENT_DIR.'/plugins/staticpress/plugin.php');\n    } elseif (strcmp(\$plugin, WP_CONTENT_DIR.'/plugins/staticpress-s3/plugin.php') === 0) {\n        include_once(WP_CONTENT_DIR.'/plugins/staticpress-s3/plugin.php');\n    } else {\n        include_once( \$plugin );\n    }\n",
-    'include_once(WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\');'    => new StrReplacement($replacesStaticPressPluginStr, 'WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\''),
-    'include_once(WP_CONTENT_DIR.\'/plugins/staticpress-s3/plugin.php\');' => new StrReplacement($replacesStaticPressS3PluginStr, 'WP_CONTENT_DIR.\'/plugins/staticpress-s3/plugin.php\''),
-];
-$replacementWpSettings = new StrReplacement($replacesWpSettings,'ABSPATH . \'wp-settings.php\'');
-$renderReplacedCode = $replacementWpSettings->renderReplacedCode();
-//echo eval($renderReplacedCode);
-eval(eval($renderReplacedCode));
+require_once dirname(__DIR__) . '/config/ConfigReplacement.php';
+eval(eval(ConfigReplacement::replace()));

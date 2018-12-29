@@ -24,11 +24,11 @@ class Replacement
     }
 
     public function wrapBySingleQuoteWithSemicolon($stringContents) {
-        return '\'' . addslashes($stringContents) . ';\'';
+        return '\'' . $this->escape($stringContents) . ';\'';
     }
 
     public function wrapBySingleQuote($stringContents) {
-        return '\'' . addslashes($stringContents) . '\'';
+        return '\'' . $this->escape($stringContents) . '\'';
     }
     /**
      * @return string
@@ -61,5 +61,9 @@ class Replacement
             }
         }
         return '['.$renderedString.']';
+    }
+
+    private function escape($stringContents) {
+        return str_replace('\'', '\\\'', str_replace('\\', '\\\\', $stringContents));
     }
 }

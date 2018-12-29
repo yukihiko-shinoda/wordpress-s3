@@ -48,19 +48,25 @@ class ConfigReplacementTest extends TestCase {
     }
 
     public function testCreateReplacementStaticPressPlugin() {
-        $actual = eval(ConfigReplacement::createReplacementStaticPressPlugin()->renderReplacedCode());
-        $actualLines = explode("\n", $actual);
-        $expected1 = 'add_filter(\'StaticPress::put_content\', array($staticpress, \'replace_relative_URI\'), 10, 2);';
-        $expected2 = 'add_action(\'StaticPress::file_put\', \'replace_home_url\', 2);';
-        $expected3 = 'add_filter(\'https_local_ssl_verify\', \'__return_false\');';
-        $lineNumber1 = $this->searchLine($actualLines, $expected1);
-        $lineNumber2 = $this->searchLine($actualLines, $expected2);
-        $lineNumber3 = $this->searchLine($actualLines, $expected3);
+        $renderedReplacedCode = ConfigReplacement::createReplacementStaticPressPlugin()->renderReplacedCode();
+        $actualLines1 = explode("\n", $renderedReplacedCode);
+        $expected1 = '\\\'href=""\\\',';
+        $lineNumber1 = $this->searchLine($actualLines1, $expected1);
         $this->assertNotNull($lineNumber1);
+        $actual = eval($renderedReplacedCode);
+
+        $actualLines2 = explode("\n", $actual);
+        $expected2 = 'add_filter(\'StaticPress::put_content\', array($staticpress, \'replace_relative_URI\'), 10, 2);';
+        $expected3 = 'add_action(\'StaticPress::file_put\', \'replace_home_url\', 1);';
+        $expected4 = 'add_filter(\'https_local_ssl_verify\', \'__return_false\');';
+        $lineNumber2 = $this->searchLine($actualLines2, $expected2);
+        $lineNumber3 = $this->searchLine($actualLines2, $expected3);
+        $lineNumber4 = $this->searchLine($actualLines2, $expected4);
         $this->assertNotNull($lineNumber2);
         $this->assertNotNull($lineNumber3);
-        $this->assertGreaterThan($lineNumber1, $lineNumber2);
+        $this->assertNotNull($lineNumber4);
         $this->assertGreaterThan($lineNumber2, $lineNumber3);
+        $this->assertGreaterThan($lineNumber3, $lineNumber4);
     }
 
     public function testCreateReplacementStaticPressS3Plugin() {
@@ -129,7 +135,7 @@ class ConfigReplacementTest extends TestCase {
     {
         $lineNumber = 1;
         foreach ($lines as $line) {
-            if (strpos($line, $expected) !== false) {
+            if (mb_strpos($line, $expected) !== false) {
                 return $lineNumber;
             }
             $lineNumber++;

@@ -9,6 +9,6 @@ Author URI:   https://roots.io/
 License:      MIT License
 */
 
-if (defined('WP_ENV') && WP_ENV !== 'production' && !is_admin()) {
+if (defined('WP_ENV') && WP_ENV !== 'production' && !is_admin() && (isset($_POST['action']) && strcmp($_POST['action'], '') !== 0)) {
     add_action('pre_option_blog_public', '__return_zero');
 }

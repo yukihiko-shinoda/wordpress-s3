@@ -35,7 +35,7 @@ class ConfigReplacement
             '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\'',
             'require(dirname(WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\').\'/includes/class-static_press.php\');' => self::createReplacementClassStaticPress(),
             // ↓ @see http://webfood.info/staticpress-s3/#feedindexhtmlurl
-            '\'replace_relative_URI\'), 10, 2);' => "'replace_relative_URI'), 10, 2);\nadd_action('StaticPress::file_put', 'replace_home_url', 2);\nfunction replace_home_url(\$file_dest, \$url){\n  \$buff = file_get_contents(\$file_dest);\n  \$replace = urlencode(static_press_admin::static_url());\n  \$content = str_replace(urlencode(home_url()),\$replace,\$buff);\nfile_put_contents(\$file_dest, \$content);\n}"
+            '\'replace_relative_URI\'), 10, 2);' => "'replace_relative_URI'), 10, 2);" . ConfigReplacement::loadPHPFile(__DIR__ . '/ReplacementForFixHref.php')
         ];
         return new StrReplacement($replacesStaticPressPluginStr, 'WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\'');
     }
@@ -88,5 +88,13 @@ class ConfigReplacement
             '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress-s3/includes/class-S3_helper.php\'',
         ];
         return new StrReplacement($replacesClassS3HelperStr, 'WP_CONTENT_DIR.\'/plugins/staticpress-s3/includes/class-S3_helper.php\'');
+    }
+
+    /**
+     * @param $file
+     * @return string
+     */
+    public static function loadPHPFile($file) {
+        return str_replace('<?php', '', file_get_contents($file));
     }
 }

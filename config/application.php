@@ -54,6 +54,15 @@ define('DB_PASSWORD', env('DB_PASSWORD'));
 define('DB_HOST', env('DB_HOST') ?: 'localhost');
 define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
+
+/**
+ * MySQL settings
+ * @see https://k-miyake.github.io/blog/azure-mysql-ssl/
+ */
+/** @noinspection PhpComposerExtensionStubsInspection */
+$mysqliClientSsl = MYSQLI_CLIENT_SSL;
+define('MYSQL_CLIENT_FLAGS', $mysqliClientSsl);
+define('MYSQL_SSL_CA', getenv('MYSQL_SSL_CA'));
 $table_prefix = env('DB_PREFIX') ?: 'wp_';
 
 /**

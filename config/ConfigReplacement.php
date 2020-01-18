@@ -16,8 +16,8 @@ class ConfigReplacement
             //↓ To read by eval()
         '<?php'		                                                           => '',
             //↓ To replace only StaticPress and StaticPress S3
-        'include_once( $plugin );'                                             => "if (strcmp(\$plugin, WP_CONTENT_DIR.'/plugins/staticpress/plugin.php') === 0) {\n        include_once(WP_CONTENT_DIR.'/plugins/staticpress/plugin.php');\n    } elseif (strcmp(\$plugin, WP_CONTENT_DIR.'/plugins/staticpress-s3/plugin.php') === 0) {\n        include_once(WP_CONTENT_DIR.'/plugins/staticpress-s3/plugin.php');\n    } else {\n        include_once( \$plugin );\n    }\n",
-        'include_once(WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\');'    => self::createReplacementStaticPressPlugin(),
+        'include_once( $plugin );'                                             => "if (strcmp(\$plugin, WP_CONTENT_DIR.'/plugins/staticpress2019/plugin.php') === 0) {\n        include_once(WP_CONTENT_DIR.'/plugins/staticpress2019/plugin.php');\n    } elseif (strcmp(\$plugin, WP_CONTENT_DIR.'/plugins/staticpress-s3/plugin.php') === 0) {\n        include_once(WP_CONTENT_DIR.'/plugins/staticpress-s3/plugin.php');\n    } else {\n        include_once( \$plugin );\n    }\n",
+        'include_once(WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\');'    => self::createReplacementStaticPressPlugin(),
         'include_once(WP_CONTENT_DIR.\'/plugins/staticpress-s3/plugin.php\');' => self::createReplacementStaticPressS3Plugin(),
         ];
         $replacementWpSettings = new StrReplacement($replacesWpSettings,'ABSPATH . \'wp-settings.php\'');
@@ -32,12 +32,12 @@ class ConfigReplacement
             //↓ To read by eval()
             '<?php' => '',
             //↓ To read by eval()
-            '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\'',
-            'require(dirname(WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\').\'/includes/class-static_press.php\');' => self::createReplacementClassStaticPress(),
+            '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\'',
+            'require(dirname(WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\').\'/includes/class-static_press.php\');' => self::createReplacementClassStaticPress(),
             // ↓ @see http://webfood.info/staticpress-s3/#feedindexhtmlurl
             '\'replace_relative_URI\'), 10, 2);' => "'replace_relative_URI'), 10, 2);" . ConfigReplacement::loadPHPFile(__DIR__ . '/ReplacementForFixHref.php')
         ];
-        return new StrReplacement($replacesStaticPressPluginStr, 'WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\'');
+        return new StrReplacement($replacesStaticPressPluginStr, 'WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\'');
     }
 
     /**
@@ -66,13 +66,13 @@ class ConfigReplacement
             //↓ To read by eval()
             'untrailingslashit(ABSPATH)' => 'untrailingslashit(dirname(ABSPATH))',
             //↓ To read by eval()
-            '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress/includes/class-static_press.php\'',
+            '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress2019/includes/class-static_press.php\'',
             //↓ To stop to dump static files under wp-admin and wp-includes directory
             '$this->scan_file(trailingslashit(ABSPATH).\'wp-admin/\'' => '//$this->scan_file(trailingslashit(ABSPATH).\'wp-admin/\'',
             //↓ To stop to upload static files under wp-admin and wp-includes directory to S3
             '$this->scan_file(trailingslashit(ABSPATH).\'wp-includes/\'' => '//$this->scan_file(trailingslashit(ABSPATH).\'wp-includes/\'',
         ];
-        return new StrReplacement($replacesClassStaticPressStr, 'WP_CONTENT_DIR.\'/plugins/staticpress/includes/class-static_press.php\'');
+        return new StrReplacement($replacesClassStaticPressStr, 'WP_CONTENT_DIR.\'/plugins/staticpress2019/includes/class-static_press.php\'');
     }
 
     /**

@@ -23,8 +23,8 @@ class ConfigReplacementTest extends TestCase {
         $actualLines = explode("\n", $actual);
         $expected1 = 'foreach ( wp_get_active_and_valid_plugins() as $plugin ) {';
         $expected2 = 'wp_register_plugin_realpath( $plugin );';
-        $expected3 = 'if (strcmp($plugin, WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\') === 0) {';
-        $expected4 = ', file_get_contents(WP_CONTENT_DIR.\'/plugins/staticpress/plugin.php\'))';
+        $expected3 = 'if (strcmp($plugin, WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\') === 0) {';
+        $expected4 = ', file_get_contents(WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\'))';
         $expected5 = ', file_get_contents(WP_CONTENT_DIR.\'/plugins/staticpress-s3/plugin.php\'))';
         $expected6 = 'unset( $plugin );';
 
@@ -56,9 +56,9 @@ class ConfigReplacementTest extends TestCase {
         $actual = eval($renderedReplacedCode);
 
         $actualLines2 = explode("\n", $actual);
-        $expected2 = 'add_filter(\'StaticPress::put_content\', array($staticpress, \'replace_relative_URI\'), 10, 2);';
+        $expected2 = 'add_filter( \'StaticPress::put_content\', array( $staticpress, \'replace_relative_URI\' ), 10, 2 );';
         $expected3 = 'add_action(\'StaticPress::file_put\', \'replace_home_url\', 1);';
-        $expected4 = 'add_filter(\'https_local_ssl_verify\', \'__return_false\');';
+        $expected4 = 'add_filter( \'https_local_ssl_verify\', \'__return_false\' );';
         $lineNumber2 = $this->searchLine($actualLines2, $expected2);
         $lineNumber3 = $this->searchLine($actualLines2, $expected3);
         $lineNumber4 = $this->searchLine($actualLines2, $expected4);

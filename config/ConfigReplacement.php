@@ -32,10 +32,10 @@ class ConfigReplacement
             //↓ To read by eval()
             '<?php' => '',
             //↓ To read by eval()
-            '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\'',
-            'require(dirname(WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\').\'/includes/class-static_press.php\');' => self::createReplacementClassStaticPress(),
+            '__FILE__' => 'WP_CONTENT_DIR . \'/plugins/staticpress2019/plugin.php\'',
+            'require dirname( WP_CONTENT_DIR . \'/plugins/staticpress2019/plugin.php\' ) . \'/includes/class-static_press.php\';' => self::createReplacementClassStaticPress(),
             // ↓ @see http://webfood.info/staticpress-s3/#feedindexhtmlurl
-            '\'replace_relative_URI\'), 10, 2);' => "'replace_relative_URI'), 10, 2);" . ConfigReplacement::loadPHPFile(__DIR__ . '/ReplacementForFixHref.php')
+            '\'replace_relative_URI\' ), 10, 2 );' => "'replace_relative_URI' ), 10, 2 );" . ConfigReplacement::loadPHPFile(__DIR__ . '/ReplacementForFixHref.php')
         ];
         return new StrReplacement($replacesStaticPressPluginStr, 'WP_CONTENT_DIR.\'/plugins/staticpress2019/plugin.php\'');
     }

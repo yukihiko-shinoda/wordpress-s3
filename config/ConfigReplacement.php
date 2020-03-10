@@ -33,7 +33,7 @@ class ConfigReplacement
             '<?php' => '',
             //↓ To read by eval()
             '__FILE__' => 'WP_CONTENT_DIR . \'/plugins/staticpress2019/plugin.php\'',
-            'require dirname( WP_CONTENT_DIR . \'/plugins/staticpress2019/plugin.php\' ) . \'/includes/class-static_press.php\';' => self::createReplacementClassStaticPress(),
+            'require dirname( WP_CONTENT_DIR . \'/plugins/staticpress2019/plugin.php\' ) . \'/includes/class-static-press.php\';' => self::createReplacementClassStaticPress(),
             // ↓ @see http://webfood.info/staticpress-s3/#feedindexhtmlurl
             '\'replace_relative_URI\' ), 10, 2 );' => "'replace_relative_URI' ), 10, 2 );" . ConfigReplacement::loadPHPFile(__DIR__ . '/ReplacementForFixHref.php')
         ];
@@ -62,17 +62,17 @@ class ConfigReplacement
             //↓ To read by eval()
             '<?php' => '',
             //↓ To read by eval()
-            'str_replace(trailingslashit(ABSPATH), trailingslashit($this->get_site_url()), $static_file)' => 'str_replace(trailingslashit(dirname(ABSPATH)), trailingslashit($this->get_site_url()), $static_file)',
+            'str_replace( trailingslashit( ABSPATH ), trailingslashit( $this->get_site_url() ), $static_file )' => 'str_replace( trailingslashit( dirname( ABSPATH ) ), trailingslashit( $this->get_site_url() ), $static_file )',
             //↓ To read by eval()
-            'untrailingslashit(ABSPATH)' => 'untrailingslashit(dirname(ABSPATH))',
+            'untrailingslashit( ABSPATH )' => 'untrailingslashit( dirname( ABSPATH ) )',
             //↓ To read by eval()
-            '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress2019/includes/class-static_press.php\'',
+            '__FILE__' => 'WP_CONTENT_DIR.\'/plugins/staticpress2019/includes/class-static-press.php\'',
             //↓ To stop to dump static files under wp-admin and wp-includes directory
-            '$this->scan_file(trailingslashit(ABSPATH).\'wp-admin/\'' => '//$this->scan_file(trailingslashit(ABSPATH).\'wp-admin/\'',
+            '$file_scanner->scan( trailingslashit( ABSPATH ) . \'wp-admin/\'' => '//$file_scanner->scan( trailingslashit( ABSPATH ) . \'wp-admin/\'',
             //↓ To stop to upload static files under wp-admin and wp-includes directory to S3
-            '$this->scan_file(trailingslashit(ABSPATH).\'wp-includes/\'' => '//$this->scan_file(trailingslashit(ABSPATH).\'wp-includes/\'',
+            '$file_scanner->scan( trailingslashit( ABSPATH ) . \'wp-includes/\'' => '//$file_scanner->scan( trailingslashit( ABSPATH ) . \'wp-includes/\'',
         ];
-        return new StrReplacement($replacesClassStaticPressStr, 'WP_CONTENT_DIR.\'/plugins/staticpress2019/includes/class-static_press.php\'');
+        return new StrReplacement($replacesClassStaticPressStr, 'WP_CONTENT_DIR.\'/plugins/staticpress2019/includes/class-static-press.php\'');
     }
 
     /**

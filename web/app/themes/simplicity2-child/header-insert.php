@@ -9,3 +9,4 @@
 
 <?php endif; ?>
 <?php //ログインユーザーも含めてカウントする場合は以下に挿入 ?>
+<script data-ad-client="ca-pub-6055754408305821" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

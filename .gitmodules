@@ -1,6 +1,6 @@
 [submodule "web/app/themes/simplicity2"]
 	path = web/app/themes/simplicity2
 	url = https://github.com/yhira/simplicity2.git
-[submodule "web/app/plugins/staticpress-s3"]
-	path = web/app/plugins/staticpress-s3
-	url = https://github.com/megumiteam/staticpress-s3.git
+[submodule "web/app/plugins/staticpress2019-s3"]
+	path = web/app/plugins/staticpress2019-s3
+	url = https://github.com/yukihiko-shinoda/staticpress2019-s3.git

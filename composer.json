@@ -42,11 +42,12 @@
     "johnpbloch/wordpress": "*",
     "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "*",
-    "wpackagist-plugin/all-in-one-seo-pack": "*",
-    "wpackagist-plugin/jetpack-markdown": "*",
-    "wpackagist-plugin/profile-widget-ninja": "*",
-    "wpackagist-plugin/google-sitemap-generator": "*",
     "wpackagist-plugin/staticpress2019": "*",
+    "wpackagist-plugin/all-in-one-seo-pack": "*",
+    "wpackagist-plugin/google-sitemap-generator": "*",
+    "wpackagist-plugin/profile-widget-ninja": "*",
+    "wpackagist-plugin/code-syntax-block":"*",
+    "wpackagist-plugin/jetpack-markdown": "*",
     "koodimonni-language/ja": "*"
   },
   "require-dev": {

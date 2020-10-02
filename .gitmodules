@@ -6,7 +6,7 @@
 	url = https://github.com/yukihiko-shinoda/staticpress2019-s3.git
 [submodule "web/app/themes/cocoon-master"]
 	path = web/app/themes/cocoon-master
-	url = https://github.com/yhira/cocoon.git
+	url = https://github.com/yukihiko-shinoda/cocoon.git
 [submodule "web/app/themes/cocoon-child-master"]
 	path = web/app/themes/cocoon-child-master
 	url = https://github.com/yhira/cocoon-child.git

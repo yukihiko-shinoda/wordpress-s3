@@ -1,5 +1,5 @@
 # Digest of chialab/php:7.4-fpm
-FROM chialab/php@sha256:793ef5d0f9e1e85acbb51507d7d6b97e7df6e7a105d0458801cc2d5711b3b2c8
+FROM chialab/php@sha256:cfbb9d497ae8744a282d6980affc844d1b30e65516bde9825292d72e70995865
 # sudo: To set permission to files in entrypoint.sh
 RUN apt update && apt install -y \
     sudo \
@@ -7,7 +7,6 @@ RUN apt update && apt install -y \
 # @see https://medium.com/@c.harrison/speedy-composer-installs-in-docker-builds-41eea6d0172b
 # @see https://qiita.com/keitakn/items/37f0fac49442b72c403e
 RUN composer config -g repos.packagist composer https://packagist.jp \
- && composer global require hirak/prestissimo --no-plugins --no-scripts \
  && composer clearcache
 # To wait for database in entrypoint.sh
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh /usr/local/bin/wait-for-it

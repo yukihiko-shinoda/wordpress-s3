@@ -6,8 +6,10 @@ RUN apt update && apt install -y \
  && rm -rf /var/lib/apt/lists/*
 # @see https://medium.com/@c.harrison/speedy-composer-installs-in-docker-builds-41eea6d0172b
 # @see https://qiita.com/keitakn/items/37f0fac49442b72c403e
-RUN composer config -g repos.packagist composer https://packagist.jp \
- && composer clearcache
+# 2021-11-01 packagist.jp doesn't support some of package so that composer lock fails.
+# @see https://magai.hateblo.jp/entry/2020/10/27/103748
+# RUN composer config -g repos.packagist composer https://packagist.jp \
+#  && composer clearcache
 # To wait for database in entrypoint.sh
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh /usr/local/bin/wait-for-it
 RUN chmod +x /usr/local/bin/wait-for-it

@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
+set -eux
 WWW_DATA_HOME="/var/www/html"
-import_directory=$(ls -d /docker-entrypoint-inituploads.d/*/ | sort | tail -n 1 | awk '{print $1"*"}')
+import_directory=$(ls -d /docker-entrypoint-inituploads.d/*/ | sort | tail -n 1 | awk '{print $1}')
 uploads_directory="${WWW_DATA_HOME}/web/app/uploads"
-if [ ! "$(ls -A $uploads_directory)" ]; then
-    sudo -u www-data cp -rfp ${import_directory} "${uploads_directory}"
+# The ls command can't work well since empty directory may exists.
+if [ ! "$(find $uploads_directory -type f)" ]; then
+    sudo -u www-data cp -rfp "${import_directory}"* "${uploads_directory}"
 fi
 sudo -u www-data composer install --prefer-dist --optimize-autoloader --no-scripts --no-dev
 

@@ -1,5 +1,5 @@
-# Digest of chialab/php:7.4-fpm
-FROM chialab/php@sha256:cfbb9d497ae8744a282d6980affc844d1b30e65516bde9825292d72e70995865
+# Digest of chialab/php:8.0-fpm
+FROM chialab/php@sha256:d0567c1a42f35ffbfd714b63d76b58d2e5dd3e9972b3891ce2fad9e238bb72e0
 # sudo: To set permission to files in entrypoint.sh
 RUN apt update && apt install -y \
     sudo \
@@ -25,8 +25,7 @@ RUN composer install --prefer-dist --optimize-autoloader --no-scripts --no-dev \
 RUN mkdir \
     /var/www/html/web/static \
     /var/www/html/web/app/upgrade \
-    /var/www/html/web/app/uploads \
-    /var/www/html/web/wp/wp-content/languages
+    /var/www/html/web/app/uploads
 USER root
 # Stages minimum required files and directories
 # since host directories may incluede some of files and directories which is installed by Composer.

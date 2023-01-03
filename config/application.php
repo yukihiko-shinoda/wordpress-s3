@@ -94,5 +94,4 @@ if (!defined('ABSPATH')) {
 // @see https://github.com/roots/bedrock/issues/30#issuecomment-32726263
 define( 'WP_LANG_DIR', $webroot_dir . '/wp/wp-content/languages' );
 
-define( 'WP_DEBUG', false );
 define( 'WP_DEBUG_LOG', true );

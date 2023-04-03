@@ -1,5 +1,5 @@
 # Digest of chialab/php:8.0-fpm
-FROM chialab/php@sha256:d0567c1a42f35ffbfd714b63d76b58d2e5dd3e9972b3891ce2fad9e238bb72e0
+FROM chialab/php@sha256:76ba7398d5f38ad94aedd4913588210508aa77bfb2f3a2531aac949185668d08
 # sudo: To set permission to files in entrypoint.sh
 RUN apt update && apt install -y \
     sudo \

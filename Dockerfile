@@ -1,7 +1,7 @@
-# Digest of chialab/php:8.0-fpm
-FROM chialab/php@sha256:76ba7398d5f38ad94aedd4913588210508aa77bfb2f3a2531aac949185668d08
+# Digest of chialab/php:8.3-fpm
+FROM chialab/php@sha256:81fac34164e43d75b6d26857177996dcdbd72b22cdf16c27bdee8645635d7f63
 # sudo: To set permission to files in entrypoint.sh
-RUN apt update && apt install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
  && rm -rf /var/lib/apt/lists/*
 # @see https://medium.com/@c.harrison/speedy-composer-installs-in-docker-builds-41eea6d0172b

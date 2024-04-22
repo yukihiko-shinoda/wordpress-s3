@@ -51,7 +51,6 @@
     "wp-cli/wp-cli-bundle": "*",
     "wpackagist-plugin/staticpress2019": "*",
     "wpackagist-plugin/all-in-one-seo-pack": ">=3.6.2",
-    "wpackagist-plugin/google-sitemap-generator": "*",
     "wpackagist-plugin/profile-widget-ninja": "*",
     "wpackagist-plugin/code-syntax-block":"*",
     "koodimonni-language/ja": "*"

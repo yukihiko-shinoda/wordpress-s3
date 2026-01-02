@@ -54,7 +54,7 @@ CMD ["php-fpm"]
 
 FROM production AS development
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    nodejs/stable \
-    npm/stable \
+    nodejs \
+    npm \
  && rm -rf /var/lib/apt/lists/*
 RUN npm install -g @anthropic-ai/claude-code

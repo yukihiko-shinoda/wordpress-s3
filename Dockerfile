@@ -1,5 +1,5 @@
 # Digest of chialab/php:8.3-fpm
-FROM chialab/php@sha256:81fac34164e43d75b6d26857177996dcdbd72b22cdf16c27bdee8645635d7f63
+FROM chialab/php@sha256:81fac34164e43d75b6d26857177996dcdbd72b22cdf16c27bdee8645635d7f63 AS production
 # sudo: To set permission to files in entrypoint.sh
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
@@ -51,3 +51,10 @@ VOLUME ["/var/www/html/vendor", \
         "/var/www/html/web/app/upgrade", \
         "/var/www/html/web/app/uploads"]
 CMD ["php-fpm"]
+
+FROM production AS development
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nodejs/stable \
+    npm/stable \
+ && rm -rf /var/lib/apt/lists/*
+RUN npm install -g @anthropic-ai/claude-code

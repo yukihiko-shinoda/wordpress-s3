@@ -36,6 +36,13 @@ COPY web/index.php web/wp-config.php /var/www/html/web/
 COPY web/app/mu-plugins /var/www/html/web/app/mu-plugins
 COPY web/app/themes /var/www/html/web/app/themes
 COPY web/app/plugins/staticpress2019-s3 /var/www/html/web/app/plugins/staticpress2019-s3
+# Fix PHP-FPM configuration for devcontainer compatibility
+# - Change error_log from /proc/self/fd/2 to file (fixes "No such device or address" error)
+# - Change listen from 127.0.0.1:9000 to 0.0.0.0:9000 (allows nginx container to connect)
+COPY docker-conf.d/docker.conf /usr/local/etc/php-fpm.d/docker.conf
+COPY docker-conf.d/www.conf /usr/local/etc/php-fpm.d/www.conf
+RUN touch /var/log/php-fpm-error.log /var/log/php-fpm-access.log \
+ && chmod 666 /var/log/php-fpm-error.log /var/log/php-fpm-access.log
 COPY ./entrypoint.sh /usr/local/bin/entrypoint
 RUN chmod +x /usr/local/bin/entrypoint
 ENTRYPOINT ["entrypoint"]

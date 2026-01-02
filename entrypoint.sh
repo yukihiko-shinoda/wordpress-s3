@@ -6,6 +6,9 @@ uploads_directory="${WWW_DATA_HOME}/web/app/uploads"
 # The ls command can't work well since empty directory may exists.
 if [ ! "$(find $uploads_directory -type f)" ]; then
     sudo -u www-data cp -rfp "${import_directory}"* "${uploads_directory}"
+    # Fix permissions so Nginx container can read uploaded files via shared volume
+    find "${uploads_directory}" -type d -exec chmod 755 {} \;
+    find "${uploads_directory}" -type f -exec chmod 644 {} \;
 fi
 sudo -u www-data composer install --prefer-dist --optimize-autoloader --no-scripts --no-dev
 
